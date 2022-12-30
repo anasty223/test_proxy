@@ -7,6 +7,7 @@ import Layout from "./components/Layout/Layout";
 import UsersDetails from "./components/UsersDetails/UsersDetails";
 import PostPage from "./components/Post/PostPage";
 import Albums from "./components/Albums/Albums";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
             <Route path="post" element={<PostPage />} />
             <Route path="albums" element={<Albums />} />
           </Route>
+
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </div>
