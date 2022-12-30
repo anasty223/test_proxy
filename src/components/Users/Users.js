@@ -10,7 +10,7 @@ export default function Users() {
     
      fetchUsers().then((users)=>{
      setUsers(users);
-      console.log(users);
+    //   console.log(users);
      })
     
     },[]);
@@ -20,10 +20,13 @@ export default function Users() {
         {users.map((user) => (
           <li key={user.id}>
              {user.name}
-             <button> <NavLink   to={`/users/${user.id}`}>
+             <button> <NavLink   to={`/users/${user.id}/post`}>
            Posts
             </NavLink></button>
 
+            <button> <NavLink   to={`/users/${user.id}/albums`}>
+           Albums
+            </NavLink></button>
 
 
           </li>

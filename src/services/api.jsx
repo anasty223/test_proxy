@@ -16,7 +16,13 @@ export async function fetchUsersById(usersId) {
 }
 
 export async function fetchPost(usersId) {
-  return  fetch(`https://jsonplaceholder.typicode.com/posts/${usersId}`).then(response => response.json())
+  return  fetch(`https://jsonplaceholder.typicode.com/posts`).then(response => response.json())
+  .then(resp => {return resp})
+
+}
+
+export async function fetchAlbums(usersId) {
+  return  fetch(`https://jsonplaceholder.typicode.com/albums`).then(response => response.json())
   .then(resp => {return resp})
 
 }

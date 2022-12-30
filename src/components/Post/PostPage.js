@@ -1,17 +1,25 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { fetchPost, fetchUsersById } from "../../services/api";
 
-export default function PostPage({items}) {
-const [posts, setPost] = useState([])
-    useEffect(()=>{
+export default function PostPage() {
+const [posts, setPosts] = useState([])
+const psramPost= useParams();
     
-        fetchPost().then((posts)=>{
-            setPost(posts);
-         console.log(posts);
-        })
-       
-       },[]);
+const paramsIdPost = psramPost.id;
+// console.log(paramsIdPost);
+    useEffect(()=>{
+        async function fetchPosts(){
+            try{
+                const results=await fetchPost(paramsIdPost);
+               
+                setPosts(results)
+            }catch(error){
+                alert("Movie not found")
+            }
+        }
+        fetchPosts();
+       },[paramsIdPost]);
 
 
 
@@ -21,9 +29,7 @@ const [posts, setPost] = useState([])
     <ul>
         {posts.map((post) => (
           <li key={post.id}>
-        <NavLink   to={`/post/${post.id}`}>
-            {post.title}
-            </NavLink>
+      {post.title}
           </li>
         ))}
       </ul>
