@@ -1,70 +1,34 @@
-import { useEffect } from "react";
-import { Overlay, ModalDiv } from "./Modal.styles";
+import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import s from './Modal.module.css'
 
-import Albums from "../Albums/Albums";
 
-export default function Modal({ handleTogleModal,modalList }) {
-  const onCloseModalByEsc = (e) => {
-    if (e.keyCode === 27) {
-      handleTogleModal();
+const Modal = ({ onClose, children }) => {
+  const modalRoot = document.getElementById('modal-root');
+  const handleBackdropClick = e => {
+    if (e.currentTarget === e.target) {
+      onClose();
     }
   };
 
   useEffect(() => {
-    window.addEventListener("keydown", onCloseModalByEsc);
-
-    return () => {
-      window.removeEventListener("keydown", onCloseModalByEsc);
+    const handleKeyDown = e => {
+      if (e.code === 'Escape') {
+        onClose();
+      }
     };
-  });
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
 
-  return (
-    <Overlay
-      onClick={(e) => {
-        if (e.target === e.currentTarget) {
-          handleTogleModal();
-        }
-      }}
-    >
-      <ModalDiv>
-   <Albums/>
-      </ModalDiv>
-    </Overlay>
+  return createPortal(
+    <div className={s.backdropDiv} onClick={handleBackdropClick}>
+      <div className={s.contentDiv}>{children}</div>
+    </div>,
+    modalRoot
   );
-}
+};
 
-// class Modal extends Component {
-//  static defaultProps = {
-//    handleTogleModal: PropTypes.func.isRequired,
-//    modalImg: PropTypes.string.isRequired,
-//    tag:PropTypes.string.isRequired
-//   }
-
-// onCloseModalByEsc = (e) => {
-//     if (e.keyCode === 27) {
-//       this.props.handleTogleModal();
-//     }
-//   };
-//     componentDidMount() {
-//         console.log('componentsDidMount')
-//         window.addEventListener("keydown", this.onCloseModalByEsc);
-//     }
-//     componentWillUnmount() {
-//         window.removeEventListener("keydown",this.onCloseModalByEsc)
-//     }
-//   render() {
-//     return (
-//       <Overlay  onClick={(e) => {
-//           if (e.target === e.currentTarget) {
-//             this.props.handleTogleModal();
-//           }
-//         }}>
-//         <ModalDiv  >
-//           <img src={this.props.modalImg} alt={this.props.tag} />
-//         </ModalDiv>
-//       </Overlay>
-//     );
-//   }
-// }
-
-// export default Modal;
+export default Modal;

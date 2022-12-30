@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { fetchPost } from "../../services/api";
 
 export default function Albums() {
+  const [showModal, setShowModal] = useState(false);
+  const [modalList, setModalList] = useState("");
   const [albums, setAlboms] = useState([]);
   const psramAlbums = useParams();
 
@@ -23,10 +25,11 @@ export default function Albums() {
 
   return (
     <>
-      <h3>Albums </h3>
-      <ol>
+  
+      <ol className="albums">
+   
         {albums.map((album) => (
-          <li key={album.id}>{album.title}</li>
+          <li className="album-item" key={album.id}>{album.title}</li>
         ))}
       </ol>
     </>

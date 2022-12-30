@@ -1,27 +1,23 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom"
 import fetchUsers from "../../services/api";
+import Albums from "../Albums/Albums";
 import Modal from "../Modal/Modal";
 
 
 export default function Users() {
     const [users, setUsers] = useState([])
-    const [showModal, setShowModal] = useState(false);
+    const [isShown, setIsshown] = useState(false);
     const [modalList, setModalList] = useState("");
 
-    const toggleModal = (albumList) => {
-        setShowModal((prev) => ({
-          showModal: !prev.showModal,
-          modalList: albumList,
-   
-        }));
-        setModalList(albumList);
+    const toggleModal = () => {
+        setIsshown(!isShown);
       };
-
+    
     useEffect(()=>{
     
      fetchUsers().then((users)=>{
-  
+        setIsshown(false);
      setUsers(users);
     //   console.log(users);
      })
@@ -34,18 +30,31 @@ export default function Users() {
     <ul>
         {users.map((user) => (
           <li key={user.id}>
-         <h2>   Name: {user.name}</h2>
+         <h2>   {user.name}</h2>
              <button> <NavLink   to={`/users/${user.id}/post`}>
            Posts
             </NavLink></button>
 
-            <button> <NavLink   to={`/users/${user.id}/albums`}>
+            <button type="button" onClick={toggleModal}> 
+           
+          
            Albums
-            </NavLink></button>
+          
+            </button>
 
-          { showModal && <Modal  handleTogleModal={toggleModal} modalList={modalList} />}
+           
           </li>
+
+          
         ))}
       </ul>
+
+      {isShown && (
+        <Modal isShown={isShown} onClose={toggleModal}>
+    
+   <Albums/>
+ 
+        </Modal>
+      )}
     </>)
 }

@@ -8,9 +8,7 @@ export default function UsersDetails() {
    
 
     const{id}=useParams()
-    // const psramPost= useParams();
-    
-    // const paramsIdPost = psramPost.id;
+
 
 
     useEffect(() => {
@@ -32,7 +30,7 @@ export default function UsersDetails() {
 
     return <div>
 
-  <h3> {users.name} </h3>
+  <h3>Name:  {users.name} </h3>
 
 
 

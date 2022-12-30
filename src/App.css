@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+.albums{
+  font-size: 10px;
+  display: grid;
+  grid-template-areas: 'myArea myArea ...';
+}
+album-item{
+  grid-area: myArea;
+}

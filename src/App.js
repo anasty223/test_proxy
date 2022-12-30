@@ -18,7 +18,7 @@ function App() {
 
           <Route path="users/:id" element={<UsersDetails />}>
             <Route path="post" element={<PostPage />} />
-            <Route path="albums" element={<Albums />} />
+            {/* <Route path="albums" element={<Albums />} /> */}
           </Route>
 
           <Route path="*" element={<NotFound />} />
