@@ -15,3 +15,8 @@ export async function fetchUsersById(usersId) {
 
 }
 
+export async function fetchPost(usersId) {
+  return  fetch(`https://jsonplaceholder.typicode.com/posts/${usersId}`).then(response => response.json())
+  .then(resp => {return resp})
+
+}

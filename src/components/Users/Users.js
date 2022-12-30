@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom"
 import fetchUsers from "../../services/api";
+import PostPage from "../Post/PostPage";
 
 export default function Users() {
     const [users, setUsers] = useState([])
@@ -13,13 +14,20 @@ export default function Users() {
      })
     
     },[]);
-    return(<ul>
+    return(<>
+         
+    <ul>
         {users.map((user) => (
           <li key={user.id}>
-        <NavLink   to={`/users/${user.id}`}>
-            {user.name}
-            </NavLink>
+             {user.name}
+             <button> <NavLink   to={`/users/${user.id}`}>
+           Posts
+            </NavLink></button>
+
+
+
           </li>
         ))}
-      </ul>)
+      </ul>
+    </>)
 }
