@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 import { fetchPost } from "../../services/api";
 
 export default function PostPage() {
   const [posts, setPosts] = useState([]);
   const psramPost = useParams();
+  const location = useLocation();
 
   const paramsIdPost = psramPost.id;
   // console.log(paramsIdPost);
@@ -23,12 +24,16 @@ export default function PostPage() {
 
   return (
     <>
+
+<NavLink to={location.state?.from ?? "/"}>
+       Go back
+      </NavLink>
       <h3>Posts</h3>
-      <ul>
+      <ol className="albums">
         {posts.map((post) => (
-          <li key={post.id}>{post.title}</li>
+          <li className="album-item" key={post.id}>{post.title}</li>
         ))}
-      </ul>
+      </ol>
     </>
   );
 }

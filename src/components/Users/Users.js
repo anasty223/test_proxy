@@ -31,21 +31,19 @@ export default function Users() {
         {users.map((user) => (
           <li key={user.id}>
          <h2>   {user.name}</h2>
-             <button> <NavLink   to={`/users/${user.id}/post`}>
+             <button className="btn albumsBtn" type="button"> <NavLink   to={`/users/${user.id}/post`}>
            Posts
             </NavLink></button>
 
-            <button type="button" onClick={toggleModal}> 
-           
+            <button className="btn albumsBtn"type="button" onClick={toggleModal}> 
+     
           
            Albums
           
             </button>
 
-           
           </li>
 
-          
         ))}
       </ul>
 

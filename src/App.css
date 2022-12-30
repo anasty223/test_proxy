@@ -36,11 +36,52 @@
     transform: rotate(360deg);
   }
 }
+ul{
+  list-style: none;
+}
 .albums{
   font-size: 10px;
   display: grid;
   grid-template-areas: 'myArea myArea ...';
+  text-align: left;
+
 }
-album-item{
-  grid-area: myArea;
+
+
+.btn {
+  box-sizing: border-box;
+           appearance: none;
+  background-color: transparent;
+  border: 2px solid #4873af;
+  border-radius: 0.6em;
+  color: #4873af;
+  cursor: pointer;
+
+  
+          align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+.btn:hover, .btn:focus {
+  color: rgb(75, 71, 71);
+  outline: 0;
+}
+
+.albumsBtn {
+  border-color: #3498db;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+}
+.albumsBtn:hover {
+  box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
 }

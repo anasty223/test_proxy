@@ -1,11 +1,10 @@
-import { NavLink, Outlet } from "react-router-dom";
-import { SuperLink, Container } from "./Layout.styles";
+import { Outlet } from "react-router-dom";
+import { Container } from "./Layout.styles";
 
 export default function Layout() {
   return (
     <Container>
-      <SuperLink to="/">Users</SuperLink> 
-      {/* <SuperLink to="/mouvies">Mouvies</SuperLink> */}
+
       <Outlet />
     </Container>
   );
